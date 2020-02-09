@@ -26,15 +26,15 @@ Then run using the scripts\Exact Wordlist Tab
 # Filters
 Most people are wanting this feature for password lists. So this tool will allow the filters to assist with that workflow.
 
-Text - The Text object you would see if you view the text tab, clicking this will include the text in the results
-Properties - The properties you would see in the metadata of the item, both keys and their values are included in the results
-Uppercase - At least one Uppercase letter must be found in the term: /[A-Z]/
-Lowercase - At least one Lowercase letter must be found in the term: /[a-z]/
-Number - At least one Number must be found in the term: /[0-9]/
-Symbol - At least one Symbol must be found in the term(excluding space!): /\W/
-Minimum length - Terms are only returned that are equal or greater then the length supplied
-Maximum length - Terms are only returned that are equal or less then the length supplied
-Note:Terms are limited from 3 to 32 lengths, do not include spaces, lines or tabs
+ - Text - The Text object you would see if you view the text tab, clicking this will include the text in the results
+ - Properties - The properties you would see in the metadata of the item, both keys and their values are included in the results
+ - Uppercase - At least one Uppercase letter must be found in the term: /[A-Z]/
+ - Lowercase - At least one Lowercase letter must be found in the term: /[a-z]/
+ - Number - At least one Number must be found in the term: /[0-9]/
+ - Symbol - At least one Symbol must be found in the term(excluding space!): /\W/
+ - Minimum length - Terms are only returned that are equal or greater then the length supplied
+ - Maximum length - Terms are only returned that are equal or less then the length supplied
+ - Note:Terms are limited from 3 to 32 lengths, do not include spaces, lines or tabs
 
 # Export View
 After specifying your Filters and the results view populated you can then click the Export View button 
