@@ -43,8 +43,9 @@ Export will be in CSV with the sort order of your view.
 # Double Click Action
 Double clicking an item will launch a new workbench searching for that 'exact term' in your case.
 
-Warning:If you have not processed your case with exact queries enabled this will return all items with whitespace inclusive and not the expected results!
-![Exact Wordlist Tab_screenshot](https://raw.githubusercontent.com/Nuix/Exact-Wordlist-Tab/master/images/Exact Wordlist Tab_screenshot.PNG)
+Warning:If you have not processed your case with exact queries enabled this will return all items with whitespace inclusive and not the expected results
+
+![Exact Wordlist Tab_screenshot](https://raw.githubusercontent.com/Nuix/Exact-Wordlist-Tab/master/images/Exact%20Wordlist%20Tab_screenshot.PNG)
 
 ## License
 
