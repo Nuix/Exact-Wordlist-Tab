@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+<head>
+<title>Audit History Tab</title>
+<link rel="stylesheet" type="text/css" href="Resources/css/prism.css">
+<link rel="stylesheet" type="text/css" href="Resources/css/bootstrap.min.css">
+<style>
+	body {padding-top:70px;}
+	h1.page-header {font-weight:bold;border-bottom:black 1px solid;}
+	a[name] {
+		display: block;
+		position: relative;
+		top: -40px;
+		visibility: hidden;
+	}
+
+  .thumbnail.with-caption {
+    display: inline-block;
+    background: #f5f5f5;
+  }
+  .thumbnail.with-caption p {
+    margin: 0;
+    padding-top: 0.5em;
+  }
+  .thumbnail.with-caption small:before {
+    content: '\2014 \00A0';
+  }
+  .thumbnail.with-caption small {
+    width: 100%;
+    text-align: right;
+    display: inline-block;
+    color: #999;
+  }
+  .footer {margin-top:70px;}
+</style>
+</head>
+<body>
+
+<div class="container">
+<div class="jumbotron">
+<h1 style="display:inline;vertical-align:bottom;margin-left:20px;">Exact Wordlist Tab</h1>
+</div>
+<h1>Table of Contents</h1>
+	<ul>
+		<li><a href="#Filtering"><b style="font-size:1.1em">Filters</b></a></li>
+		<li><a href="#ExportView"><b style="font-size:1.1em">Export View </b></a></li>
+		<li><a href="#Doubleclick"><b style="font-size:1.1em">Double Click Action </b></a></li>
+		<li><a href="#about_this_version"><b style="font-size:1.1em">Version Information</b></a></li>
+	</ul>
+<div style="page-break-after:always;"></div>
+<a name="Filtering"></a><h1 class="page-header">Filters</h1>
+Most people are wanting this feature for password lists. So this tool will allow the filters to assist with that workflow.
+<ul>
+	<li>Text - The Text object you would see if you view the text tab, clicking this will include the text in the results</li>
+	<li>Properties - The properties you would see in the metadata of the item, both keys and their values are included in the results</li>
+	<li>Uppercase - At least one Uppercase letter must be found in the term: /[A-Z]/</li>
+	<li>Lowercase - At least one Lowercase letter must be found in the term: /[a-z]/</li>
+	<li>Number - At least one Number must be found in the term: /[0-9]/</li>
+	<li>Symbol - At least one Symbol must be found in the term(excluding space!): /\W/</li>
+	<li>Minimum length - Terms are only returned that are equal or greater then the length supplied</li>
+	<li>Maximum length - Terms are only returned that are equal or less then the length supplied</li>
+</ul>
+<div class="alert alert-info" role="alert">
+	<p><strong>Note:</strong>Terms are limited from 3 to 32 lengths, do not include spaces, lines or tabs</p>
+</div>
+
+<a name="ExportView"></a><h1 class="page-header">Export View</h1>
+After specifying your Filters and the results view populated you can then click the Export View button <br />
+Export will be in CSV with the sort order of your view.
+
+<a name="Doubleclick"></a><h1 class="page-header">Double Click Action</h1>
+Double clicking an item will launch a new workbench searching for that 'exact term' in your case.
+<div class="alert alert-warning" role="alert">
+	<p><strong>Warning:</strong>If you have not processed your case with exact queries enabled this will return all items with whitespace inclusive and not the expected results!</p>
+</div>
+
+
+<a name="about_this_version"></a><h1 class="page-header">Version Information</h1>
+Name: Exact Wordlist Tab<br />
+Version: 1.0<br />
+Released: December 2016<br />
+Purpose: To expediate the use of Exact word list exporting, specifically for password lists<br />
+
+<hr/>
+	<div class="footer">
+	<i class="pull-left">Cameron Stiller</i>
+	<i class="pull-right">&copy;2016 Nuix Software. All Rights Reserved</i>
+	</div>
+</div>
+</body>
+</html>
