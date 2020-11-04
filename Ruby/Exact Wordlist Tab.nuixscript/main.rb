@@ -202,11 +202,11 @@ def create_table(columns_Array,rows_Array,name)
 			if(event.getID()==502)
 				rowindex=tb.rowAtPoint(event.getPoint())
 				modelrow=tb.convertRowIndexToModel(rowindex)
-				modelcolumn=tb.convertColumnIndexToModel(0)
-				query=tb.getModel().getValueAt(modelrow,modelcolumn)
+				modelcolumn=tb.convertColumnIndexToModel(2)
+				query="guid:(" + tb.getModel().getValueAt(modelrow,modelcolumn).split(',').join(" OR ") + ")"
 				#Define our tab settings
 				settings = {
-					"search" => "'#{query}'", #The query the tab will run and display results for
+					"search" => query, #The query the tab will run and display results for
 				}
 				
 				#Show our tab which uses our custom profile
@@ -263,7 +263,6 @@ def stat_gen()
 	$buffer_thread =Thread.new(){
 		items=($current_selected_items.to_a.length==0)  ? $current_case.searchUnsorted("") : $current_selected_items
 		$progress_stat.setMaximum(items.length-1)
-		pending=Hash.new()
 		items.each_with_index do | item,index|
 			begin
 				if($canceling==true)
@@ -293,9 +292,9 @@ def stat_gen()
 						end
 						#puts do something about val
 						if($stat_pool.has_key? val)
-							$stat_pool[val]=$stat_pool[val]+1
+							$stat_pool[val].push(item.getGuid())
 						else
-							$stat_pool[val]=1
+							$stat_pool[val]=[item.getGuid()]
 						end
 					end
 				end
@@ -304,11 +303,12 @@ def stat_gen()
 			end
 		end
 		thread_safe_now do 
-			$stat_pool.each do | val,item_count|
+			$stat_pool.each do | val,guid_list|
 				if($canceling == false)
 					rowvalue=java.util.Vector.new(1)
 					rowvalue.addElement(val)
-					rowvalue.addElement(item_count.to_s.rjust(10, '0'))
+					rowvalue.addElement(guid_list.length().to_s.rjust(10, '0'))
+					rowvalue.addElement(guid_list.join(","))
 					$results_table.getModel().addRow(rowvalue)
 				end
 			end
@@ -357,7 +357,7 @@ tab_hgroup.addComponent(tab_option_panel)
 
 tab_main_vgroup=tab_layout.createParallelGroup()
 tab_verticalSequentialGroups.addGroup(tab_main_vgroup)
-$results_table=create_table(["Exact Word","Number of items"],[[]],"results")
+$results_table=create_table(["Exact Word","Number of items","GUIDs"],[[]],"results")
 jscroller = JScrollPane.new
 jscroller.getViewport.add $results_table
 $results_table.setAutoCreateRowSorter(true)
