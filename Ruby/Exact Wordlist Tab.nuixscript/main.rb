@@ -9,8 +9,7 @@ import javax.swing.JComboBox
 import javax.swing.JProgressBar
 import javax.swing.JButton
 import javax.swing.SwingUtilities
-import com.teamdev.jxbrowser.chromium.Browser;
-import com.teamdev.jxbrowser.chromium.swing.BrowserView;
+
 import javax.swing.JFileChooser
 $controls=Hash.new()
 $sticky_settings={"Text"=>"true","Properties"=>"false","Uppercase"=>"true","Lowercase"=>"true","Number"=>"true","Symbol"=>"true","Minimum length"=>"8","Maximum length"=>"12"}
@@ -25,11 +24,27 @@ $buffer_thread=Thread.new(){sleep(0.001)}
 
 def loadhelp()
 	body=JPanel.new(java.awt.GridLayout.new(0,1))
-	browser=Browser.new()
-	browser.cookieStorage().deleteAll()
-	browserview=BrowserView.new(browser)
-	body.add(browserview)
-	browser.loadURL("#{File.dirname(__FILE__)}\\Help.html")
+	browser=nil
+	begin
+		import com.teamdev.jxbrowser.chromium.Browser;
+		browser=Browser.new()
+		browser.cookieStorage().deleteAll()
+	rescue Exception => missingClass
+		import com.nuix.browser.jx.JxWebBrowser
+		browser=JxWebBrowser.new()
+		browser.a() # deleteCookies()
+	end
+	
+	begin
+		import com.teamdev.jxbrowser.chromium.swing.BrowserView;
+		browserview=BrowserView.new(browser)
+		browser.loadURL("#{File.dirname(__FILE__)}\\Help.html")
+		body.add(browserview)
+	rescue Exception => missingClass
+		browser.b("#{File.dirname(__FILE__)}\\Help.html") #browser.loadPage()
+		body.add(browser.getBrowserView())
+	end
+	
 	$window.addTab("Help",body)
 end
 
